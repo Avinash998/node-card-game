@@ -8,9 +8,23 @@ class Rule{
     threeCardTrailCheck(game){
         for(let i=0; i<game.getPlayerList().length; i++){
             let currentPlayer = game.getPlayerList()[i];
-            currentPlayer.showAllCards()[0].getValue();
+            let first = currentPlayer.showAllCards()[0].getValue();
+            let second = currentPlayer.showAllCards()[1].getValue();
+            let third = currentPlayer.showAllCards()[2].getValue();
+            if((first == second)&&(first == third)){
+                let value = first+second+third;
+                if( this.winner.value == undefined || this.winner.value < value){
+                    this.winner.name = currentPlayer.getName();
+                    this.winner.value = value;
+                }      
+            }
         }
-        player.showAllCards();
+        if(this.winner.name != undefined){
+            console.log(`Winner is ${this.winner.name}`);
+        }
+        else{
+            this.twoCardTrailCheck(game);
+        }
     }
     twoCardTrailCheck(player){
 
