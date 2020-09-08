@@ -31,6 +31,8 @@ class Suit{
 
 // let card = new Card("two", 2, this.type, this.color);
 // console.log(card);
-const suit1= new Suit("heart", "red");
-console.log(suit1);
-console.log(suit1.suit);
+// const suit1= new Suit("heart", "red");
+// console.log(suit1);
+// console.log(suit1.suit);
+
+module.exports = {Suit};
