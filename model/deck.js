@@ -14,14 +14,13 @@ class Deck{
             this.list[i] = this.list[random];
             this.list[random] = swap;
         }
-        console.log(this.list);
-        return this.list;
+        // console.log(this.list);
     }
     // Add Single card to the deck top of deck
     add(card){
         this.list.push(card);
     }
-    // rerutn top card from deck and remove from deck
+    // return top card from deck and remove from deck
     draw(){
         return this.list.pop();
     }
@@ -40,3 +39,4 @@ deck1.add(4);
 deck1.add(5);
 console.log(deck1);
 deck1.suffle();
+module.exports = {Deck};
