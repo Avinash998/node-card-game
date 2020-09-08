@@ -1,9 +1,9 @@
 class Card {
-    constructor(value, type, color){
+    constructor(name, value, type, color){
+        this.name = name;
         this.value = value;
         this._status = 'unused';
         this.type = type;
-        this.name = this.value+'-'+this.type;
         this.color = color;
     }
     get status(){
@@ -19,6 +19,6 @@ class Card {
     }
 }
 
-// let twoSpade = new Card("twoSpade",2,"spade","red");
+// let twoSpade = new Card("two",2,"spade","red");
 // console.log(twoSpade.type);
 module.exports = {Card};
