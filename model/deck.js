@@ -5,18 +5,27 @@ class Deck{
     constructor(){
         this.list = [];
     }
-    initilizeDeck(){
-        this.list.push(new Card(2,'spade','black'));
-        this.list.push(new Card(3,'spade','black'));
-        this.list.push(new Card(4,'spade','black'));
-        this.list.push(new Card(5,'spade','black'));
-        this.list.push(new Card(6,'spade','black'));
-        this.list.push(new Card(2,'heart','red'));
-        this.list.push(new Card(3,'heart','red'));
-        this.list.push(new Card(4,'heart','red'));
-        this.list.push(new Card(5,'heart','red'));
-        this.list.push(new Card(6,'heart','red'));
+    // Suffles the card in the deck
+    suffle(){
+        let length = this.list.length;
+        for(let i=0;i<length; i++){
+            let random = Math.floor(Math.random()*length);
+            let swap = this.list[i];
+            this.list[i] = this.list[random];
+            this.list[random] = swap;
+        }
+        console.log(this.list);
+        return this.list;
     }
+    // Add Single card to the deck top of deck
+    add(card){
+        this.list.push(card);
+    }
+    // rerutn top card from deck and remove from deck
+    draw(){
+        return this.list.pop();
+    }
+    // return entire list of cards present in the deck
     getlist(){
         return this.list;
     }
@@ -24,6 +33,10 @@ class Deck{
 }
 
 const deck1 = new Deck();
+deck1.add(1);
+deck1.add(2);
+deck1.add(3);
+deck1.add(4);
+deck1.add(5);
 console.log(deck1);
-deck1.initilizeDeck();
-console.log(deck1);
+deck1.suffle();
