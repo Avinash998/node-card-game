@@ -9,6 +9,9 @@ class Card {
     get status(){
         return this._status;
     }
+    getValue(){
+        return this.value;
+    }
     changeStatus(){
         if(this._status == 'unused'){
             this._status = 'used';
@@ -16,6 +19,9 @@ class Card {
         else{
             this._status = 'unused';
         }
+    }
+    getName(){
+        return this.type+'-'+this.name;
     }
 }
 

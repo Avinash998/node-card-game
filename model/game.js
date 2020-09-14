@@ -2,6 +2,7 @@ const {Card} = require('./card');
 const {Player} = require('./player');
 const {Deck} = require('./deck');
 const {Suit} = require('./suit');
+const {Rule} = require('./rule');
 
 class Game{
     constructor(){
@@ -11,15 +12,18 @@ class Game{
     addPlayer(player){
         this.players.push(player);
     }
+    getPlayerList(){
+        return this.players;
+    }
     start(){
         const avinash = new Player("Aviansh");
         const rahul = new Player("Rahul");
-        const anand = new Player("Anand");
-        const aman = new Player("Aman");
+        // const anand = new Player("Anand");
+        // const aman = new Player("Aman");
         this.addPlayer(avinash);
         this.addPlayer(rahul);
-        this.addPlayer(anand);
-        this.addPlayer(aman);
+        // this.addPlayer(anand);
+        // this.addPlayer(aman);
         const heart = new Suit("heart", "red");
         const diamond = new Suit("diamond", "red");
         const spade = new Suit("spade", "black");
@@ -35,9 +39,9 @@ class Game{
         // });
         console.log("---------------Order of Cards in the Deck (After Suffle)-------------------");
         deck.suffle();
-        deck.getlist().forEach(name => {
-            console.log(name.getName());
-        });
+        // deck.getlist().forEach(name => {
+        //     console.log(name.getName());
+        // });
         this.deal(deck);
         this.deal(deck);
         this.deal(deck);
@@ -53,14 +57,20 @@ class Game{
         rahul.showAllCards().forEach(name => {
             console.log(name.getName());
         });
-        console.log("------------------Anand card-----------------------");
-        anand.showAllCards().forEach(name => {
-            console.log(name.getName());
-        });
-        console.log("------------------Aman card-----------------------");
-        aman.showAllCards().forEach(name => {
-            console.log(name.getName());
-        });
+        // console.log("------------------Anand card-----------------------");
+        // anand.showAllCards().forEach(name => {
+        //     console.log(name.getName());
+        // });
+        // console.log("------------------Aman card-----------------------");
+        // aman.showAllCards().forEach(name => {
+        //     console.log(name.getName());
+        // });
+        console.log("------------------Rules Check---------------------");
+        // console.log(this.getPlayerList());
+        const rule = new Rule();
+        if(rule.threeCardTrailCheck(this.getPlayerList())){
+            this.start();
+        }
 
     }
     // dealing cards to the every palyer 
@@ -73,3 +83,5 @@ class Game{
 }
 const game = new Game();
 game.start();
+
+module.exports = {Game};

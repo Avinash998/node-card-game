@@ -5,7 +5,7 @@ class Suit{
     constructor(type,color){
         this.type = type;
         this.color = color;
-        this.suit = this.initilise();
+        this.cards = this.initilise();
     }
     initilise(){
         //let twoSpade = new Card("two",2,"spade","red");
@@ -22,10 +22,11 @@ class Suit{
         const queen = new Card("queen", 12, this.type, this.color);
         const king = new Card("king", 13, this.type, this.color);
         const ace = new Card("ace", 14, this.type, this.color);
-        return [two,three,four,five,six,seven,eight,nine,ten,jack,queen,king,ace];
+        // return [two,three,four,five,six,seven,eight,nine,ten,jack,queen,king,ace];
+        return [two,three,four];
     }
     getsuit(){
-        return this.suit;
+        return this.cards;
     }
 }
 

@@ -1,4 +1,5 @@
 var {Card} = require('./card');
+var {Suit} = require('./suit');
 
 class Deck{
     // let twoSpade = new Card('twoSpade',2,'spade','black');
@@ -20,6 +21,12 @@ class Deck{
     add(card){
         this.list.push(card);
     }
+    // Add Entire suit to the deck
+    addSuit(suit){
+        suit.forEach(card => {
+        this.list.push(card);    
+        });
+    }
     // return top card from deck and remove from deck
     draw(){
         return this.list.pop();
@@ -31,12 +38,12 @@ class Deck{
 
 }
 
-const deck1 = new Deck();
-deck1.add(1);
-deck1.add(2);
-deck1.add(3);
-deck1.add(4);
-deck1.add(5);
-console.log(deck1);
-deck1.suffle();
+// const deck1 = new Deck();
+// deck1.add(1);
+// deck1.add(2);
+// deck1.add(3);
+// deck1.add(4);
+// deck1.add(5);
+// console.log(deck1);
+// deck1.suffle();
 module.exports = {Deck};
