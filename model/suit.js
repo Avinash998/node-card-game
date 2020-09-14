@@ -23,7 +23,8 @@ class Suit{
         const king = new Card("king", 13, this.type, this.color);
         const ace = new Card("ace", 14, this.type, this.color);
         // return [two,three,four,five,six,seven,eight,nine,ten,jack,queen,king,ace];
-        return [two,three,four];
+        // return [two,three,four];
+        return [two,three,four,five,six];
     }
     getsuit(){
         return this.cards;
