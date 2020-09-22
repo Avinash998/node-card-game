@@ -1,10 +1,9 @@
-var {Card} = require('./card');
-var {Suit} = require('./suit');
-
 class Deck{
+
     constructor(){
         this.list = [];
     }
+
     // Suffles the card in the deck
     suffle(){
         let length = this.list.length;
@@ -16,18 +15,20 @@ class Deck{
         }
         // console.log(this.list);
     }
+
     // Add Single card to the deck top of deck
-    // push only card not other data in the list
     add(card){
         this.list.push(card);
     }
+
     // Add Entire suit to the deck
     addSuit(suit){
         suit.forEach(card => {
         this.add(card); 
         });
     }
-    // return top card from deck and remove from deck
+
+    // return top card from deck and remove that card from deck
     draw(){
         if(this.list.length != 0){
             return this.list.pop();
@@ -37,6 +38,7 @@ class Deck{
         }
         
     }
+
     // return entire list of cards present in the deck
     getlist(){
         if(this.list.length != 0){

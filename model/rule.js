@@ -1,14 +1,14 @@
 var _ = require('lodash');
 
-const {Player} = require('./player');
-const {Card} = require('./card');
-const {Game} = require('./game');
 class Rule{
     constructor(){
-        this.winner = {};
+        this.winner = {}; // Store temporary winner with value
     }
-    // two player with same value check perform
-    // check for empty deck;
+
+    // multiple player with same value check perform to all methods
+
+    /* Method to check trail of three cards with highest value.
+         Return single winner or( list of players or all player) and call next rule. */
     threeCardTrailCheck(game){
         let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
@@ -36,6 +36,9 @@ class Rule{
         return winnerPlayerList;
     
     }
+
+    /* Method to check sequence of three cards with highest value.
+         Return single winner or( list of players or all player) and call next rule. */
     threeCardSecuenceCheck(game){
         let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
@@ -73,6 +76,9 @@ class Rule{
         return winnerPlayerList;
 
     }
+
+    /* Method to check trail of two cards with highest value.
+         Return single winner or( list of players or all player) and call next rule. */
     twoCardTrailCheck(game){
         let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
@@ -105,6 +111,8 @@ class Rule{
         return winnerPlayerList;
     }
     
+    /* Method to check last hand card with highest value.
+         Return single winner or list of players or all player. */
     highestTopCardCheck(game){
         let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
@@ -121,6 +129,7 @@ class Rule{
         return winnerPlayerList;
     }
 
+    /* Method to check the winnerlist and return winnerlist */
     getWinnerList(winnerPlayerList,combineValue,currentPlayer){
         if(Object.keys(this.winner).length == 0){
             winnerPlayerList.push(currentPlayer);

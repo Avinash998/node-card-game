@@ -7,6 +7,8 @@ class Suit{
         this.color = color;
         this.cards = this.initilise();
     }
+
+    // Initilize all the cards in the suit
     initilise(){
         const two = new Card("two", 2, this.type, this.color);
         const three = new Card("three", 3, this.type, this.color);
@@ -25,6 +27,7 @@ class Suit{
         // return [two,three,four];
         // return [two,three,four,five,six];
     }
+    
     getsuit(){
         return this.cards;
     }

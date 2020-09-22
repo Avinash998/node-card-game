@@ -4,15 +4,22 @@ class Player{
         this.status = 'playing'; // playing | looser | winner
         this.hand = [];
     }
+
+    // Add one card to the player's hand 
     add(card){
         this.hand.push(card);
     }
+
     getName(){
         return this.name;
     }
+
+    // return players last hand
     showLastCard(){
         return this.hand[this.hand.length-1];
     }
+
+    // return players all hand
     showAllCards(){
         return this.hand;
     }
