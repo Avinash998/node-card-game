@@ -10,40 +10,34 @@ class Rule{
     // two player with same value check perform
     // check for empty deck;
     threeCardTrailCheck(game){
-        console.log(game.length);
+        let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
             let currentPlayer = game[i];
             let currentCardList = currentPlayer.showAllCards();
-            // console.log(currentPlayer.name);
-            // console.log(currentPlayer.getName());
-            // console.log(currentCardList);
-            // console.log();
             let firstCard = currentCardList[0].getValue();
             let secondCard = currentCardList[1].getValue();
             let thirdCard = currentCardList[2].getValue();
             if((firstCard == secondCard)&&(firstCard == thirdCard)){
+                
                 let combineValue = firstCard+secondCard+thirdCard;
-                if( Object.keys(this.winner).length == 0 || this.winner.value < combineValue){
-                    console.log();
-                    this.winner.name = currentPlayer.getName();
-                    this.winner.value = combineValue;
-                }      
+                winnerPlayerList = this.getWinnerList(winnerPlayerList,combineValue,currentPlayer);    
             }
         }
-        if(!_.isEmpty(this.winner)){
-
-            console.log(`Winner is ${this.winner.name} by threeCardTrailCheck rule`);
+        this.winner = {};
+        if(winnerPlayerList.length == 0){
+            winnerPlayerList =  this.threeCardSecuenceCheck(game);
+        }
+        else if(winnerPlayerList.length == 1){
+            console.log(`Winner is ${winnerPlayerList[0].getName()} by threeCardTrailCheck rule`);
         }
         else{
-            // console.log('Call Three secuence check Method');
-            this.threeCardSecuenceCheck(game);
-            // const g = new Game();
-            // g.start();
-            // return 1;
+            winnerPlayerList =  this.threeCardSecuenceCheck(winnerPlayerList);
         }
+        return winnerPlayerList;
     
     }
     threeCardSecuenceCheck(game){
+        let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
             let currentPlayer = game[i];
             let currentCardList = currentPlayer.showAllCards();
@@ -61,27 +55,26 @@ class Rule{
             }
             if(flag){ 
                 combineValue += sortedCard[currentCardList.length - 1].getValue();
-                if(Object.keys(this.winner).length == 0 || this.winner.value < combineValue){
-                    this.winner.name = currentPlayer.getName();
-                    this.winner.value = combineValue;
-                }        
+
+                winnerPlayerList = this.getWinnerList(winnerPlayerList,combineValue,currentPlayer); 
             }
 
         }
-        if(!_.isEmpty(this.winner)){
-
-            console.log(`Winner is ${this.winner.name} by threeCardSecuenceCheck rule`);
+        this.winner = {};
+        if(winnerPlayerList.length == 0){
+            winnerPlayerList =  this.twoCardTrailCheck(game);
+        }
+        else if(winnerPlayerList.length == 1){
+            console.log(`Winner is ${winnerPlayerList[0].getName()} by threeCardSecuenceCheck rule`);
         }
         else{
-            console.log('Call two trail check Method');
-            this.twoCardTrailCheck(game);
-            // const g = new Game();
-            // g.start();
-            // return 1;
+            winnerPlayerList =  this.twoCardTrailCheck(winnerPlayerList);
         }
+        return winnerPlayerList;
 
     }
     twoCardTrailCheck(game){
+        let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
             let currentPlayer = game[i];
             let currentCardList = currentPlayer.showAllCards();
@@ -96,50 +89,56 @@ class Rule{
                 else{
                     combineValue = 2 * thirdCard; 
                 }
-                if( Object.keys(this.winner).length == 0 || this.winner.value < combineValue){
-                    console.log();
-                    this.winner.name = currentPlayer.getName();
-                    this.winner.value = combineValue;
-                }      
+                winnerPlayerList = this.getWinnerList(winnerPlayerList,combineValue,currentPlayer);        
             }
         }
-        if(!_.isEmpty(this.winner)){
-
-            console.log(`Winner is ${this.winner.name} by twoCardTrailCheck rule`);
+        this.winner = {};
+        if(winnerPlayerList.length == 0){
+            winnerPlayerList =  this.highestTopCardCheck(game);
+        }
+        else if(winnerPlayerList.length == 1){
+            console.log(`Winner is ${winnerPlayerList[0].getName()} by twoCardTrailCheck rule`);
         }
         else{
-            console.log('Call Three secuence check Method');
-            this.highestTopCardCheck(game);
-            // const g = new Game();
-            // g.start();
-            // return 1;
+            winnerPlayerList =  this.highestTopCardCheck(winnerPlayerList);
         }
+        return winnerPlayerList;
     }
     
     highestTopCardCheck(game){
+        let winnerPlayerList = [];
         for(let i=0; i<game.length; i++){
             let currentPlayer = game[i];
             let currentCardList = currentPlayer.showAllCards();
-            let currentCardValue =  currentCardList[currentCardList.length-1].getValue();
-            if( Object.keys(this.winner).length == 0 || this.winner.value < currentCardValue){
-                console.log();
-                this.winner.name = currentPlayer.getName();
-                this.winner.value = currentCardValue;
-            }  
+            let combineValue =  currentCardList[currentCardList.length-1].getValue();
+            winnerPlayerList = this.getWinnerList(winnerPlayerList,combineValue,currentPlayer); 
 
         }
-        if(!_.isEmpty(this.winner)){
-
-            console.log(`Winner is ${this.winner.name}  by highestTopCardCheck rule`);
+        this.winner = {};
+        if(winnerPlayerList.length == 1){
+            console.log(`Winner is ${winnerPlayerList[0].getName()} by highestTopCardCheck rule`);
         }
-        else{
-            console.log('Call deal method');
-            // this.highestTopCardCheck(player);
-            // const g = new Game();
-            // g.start();
-            // return 1;
-        } 
+        return winnerPlayerList;
     }
+
+    getWinnerList(winnerPlayerList,combineValue,currentPlayer){
+        if(Object.keys(this.winner).length == 0){
+            winnerPlayerList.push(currentPlayer);
+            this.winner.name = currentPlayer.getName();
+            this.winner.value = combineValue;
+        }
+        else if(this.winner.value < combineValue){
+            winnerPlayerList = [];
+            winnerPlayerList.push(currentPlayer);
+            this.winner.name = currentPlayer.getName();
+            this.winner.value = combineValue;
+        }
+        else if(this.winner.value == combineValue){
+            winnerPlayerList.push(currentPlayer);
+        } 
+        return winnerPlayerList;
+    }
+    
 }
 
 // const game = new Game();

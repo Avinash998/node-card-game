@@ -8,7 +8,6 @@ class Suit{
         this.cards = this.initilise();
     }
     initilise(){
-        //let twoSpade = new Card("two",2,"spade","red");
         const two = new Card("two", 2, this.type, this.color);
         const three = new Card("three", 3, this.type, this.color);
         const four = new Card("four", 4, this.type, this.color);
@@ -22,9 +21,9 @@ class Suit{
         const queen = new Card("queen", 12, this.type, this.color);
         const king = new Card("king", 13, this.type, this.color);
         const ace = new Card("ace", 14, this.type, this.color);
-        // return [two,three,four,five,six,seven,eight,nine,ten,jack,queen,king,ace];
+        return [two,three,four,five,six,seven,eight,nine,ten,jack,queen,king,ace];
         // return [two,three,four];
-        return [two,three,four,five,six];
+        // return [two,three,four,five,six];
     }
     getsuit(){
         return this.cards;
