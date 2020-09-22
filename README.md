@@ -1,12 +1,19 @@
-# node-web-server ![CI status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+# node-card-game ![CI status](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-node-card-game is an amazing game played between 4 players. Devloped in node.js. Check the rules [here](https://www.google.com) before starting.
+node-card-game is an amazing game played between 4 players. Devloped in node.js. Check the rules [here](RULES.md) before starting.
 
 ## Installation
 
-Be smart and use Docker.
+### 1. Use docker command
 
-### Requirements
+`$ sudo docker build . -t avinash998/node-card-game`
+`$ sudo docker run avinash998/node-card-game`
+
+### 2. Use docker hub
+
+`sudo docker run avinash998/node-card-game`
+
+### 3. Requirements
 * Node 8 or latest
 * npm 6 or latest
 
